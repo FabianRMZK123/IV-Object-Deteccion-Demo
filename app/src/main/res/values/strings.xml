@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">picassoroiobj</string>
+    <string name="tv_take_photo">Tomar foto</string>
+    <string name="tv_description">Seleciona una foto o toma captura</string>
+    <string name="tv_placeholder">Select or Capture Image</string>
+    <string name="todo">TODO</string>
+</resources>
