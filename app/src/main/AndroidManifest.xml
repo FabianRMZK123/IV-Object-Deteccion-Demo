@@ -23,7 +23,7 @@
             android:name=".FullScreenImageActivity"
             android:exported="false" />
         <activity
-            android:name=".Adapter"
+            android:name=".AdapterActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

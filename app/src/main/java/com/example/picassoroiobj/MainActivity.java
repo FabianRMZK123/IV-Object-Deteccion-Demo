@@ -97,6 +97,7 @@ public class MainActivity extends AppCompatActivity implements CameraBridgeViewB
     public Mat onCameraFrame(CameraBridgeViewBase.CvCameraViewFrame inputFrame) {
         Mat matInput = inputFrame.rgba();
         m_mathRoi.set(matInput);
+        // Con esta linea se evita que la captura de imagen esté en colores negativos
         Imgproc.cvtColor(matInput, matInput, Imgproc.COLOR_BGR2RGB);
         roiRectList.clear();
         int screenWidth = matInput.cols();
@@ -171,16 +172,15 @@ public class MainActivity extends AppCompatActivity implements CameraBridgeViewB
                 Log.d(TAG, "Número de elementos en roiBitmapList: " + roiBitmapList.size());
 
                 // Crear un intent y pasar la lista a la actividad roi
-                Intent intent = new Intent(MainActivity.this, Adapter.class);
+                Intent intent = new Intent(MainActivity.this, AdapterActivity.class);
 
+                VariablesGlobales.globalImageBytesList = new ArrayList<>();
                 // Convertir las imágenes a bytes y pasarlas directamente
                 for (int i = 0; i < roiBitmapList.size(); i++) {
                     ByteArrayOutputStream stream = new ByteArrayOutputStream();
                     roiBitmapList.get(i).compress(Bitmap.CompressFormat.JPEG, 100, stream);
-                    byte[] byteArray = stream.toByteArray();
-                    intent.putExtra("roiImage" + i, byteArray);
+                    VariablesGlobales.globalImageBytesList.add(stream.toByteArray());
                 }
-                Log.e(TAG, "Estoy en Main: " );
 
                 startActivity(intent);
             } else {

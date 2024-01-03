@@ -13,6 +13,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.opencv.android.Utils;
+import org.opencv.core.CvType;
+import org.opencv.core.Mat;
+import org.opencv.imgproc.Imgproc;
+
 import java.util.ArrayList;
 
 public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHolder> {
@@ -37,6 +42,18 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
     public void onBindViewHolder(@NonNull ImageViewHolder holder, int position) {
         byte[] imageBytes = imageBytesList.get(position);
         Bitmap bitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
+
+        /*
+        https://stackoverflow.com/questions/23202130/android-convert-byte-array-from-camera-api-to-color-mat-object-opencv
+
+        Con un código así se puede transformar de negativo a colores normales
+
+        Mat orig = new Mat(bitmap.getHeight(),bitmap.getWidth(), CvType.CV_8UC1);
+        Bitmap myBitmap32 = bitmap.copy(Bitmap.Config.ARGB_8888, true);
+        Utils.bitmapToMat(myBitmap32, orig);
+        Imgproc.cvtColor(orig, orig, Imgproc.COLOR_BGR2RGB,4);
+        */
+
         holder.imageView.setImageBitmap(bitmap);
 
         // Obtener el número actual

@@ -34,7 +34,7 @@ public class FullScreenImageActivity extends AppCompatActivity {
     private TextView tvPro, tvdes;
     int RP = 0;
     int DP = 0;
-    private String m ;
+    private String m;
     private final List<Detection> results;  // Variable miembro para almacenar los resultados
 
     public FullScreenImageActivity() {
@@ -146,6 +146,7 @@ public class FullScreenImageActivity extends AppCompatActivity {
             Log.e("DEBUG_TAG", "La imagen es nula");
         }
     }
+
     // En este metodo se cuenta y se imprime el contador
     @SuppressLint("SetTextI18n")
     private void debugPrint(List<Detection> results) {
@@ -229,13 +230,16 @@ public class FullScreenImageActivity extends AppCompatActivity {
 class DetectionResult {
     private final RectF boundingBox;
     private final String text;
+
     public DetectionResult(RectF boundingBox, String text) {
         this.boundingBox = boundingBox;
         this.text = text;
     }
+
     public RectF getBoundingBox() {
         return boundingBox;
     }
+
     public String getText() {
         return text;
     }
